@@ -32,8 +32,12 @@ jobs:
       - name: Make Bootstrap Package
         run: make package
 
-      - name: Upload to Release Action
-        uses: Shopify/upload-to-release@v2.0.0
+      - name: Create new release
+        uses: ncipollo/release-action@v1
         with:
-          path: ./packages/*
-            com.roothide.bootstrap_0.1-2+debug_iphoneos-arm64e.deb
+          name: Rolling Release
+          body: These are automatically updated builds of the latest commit.
+          artifacts: "Bootstrap.tipa, com.roothide.bootstrap_0.1-1+debug_iphoneos-arm64e.deb"
+          tag: release-${{ github.run_id }}
+
+      

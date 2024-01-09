@@ -37,7 +37,9 @@ jobs:
         with:
           name: Rolling Release
           body: These are automatically updated builds of the latest commit.
-          artifacts: "Bootstrap.tipa, com.roothide.bootstrap_0.1-1+debug_iphoneos-arm64e.deb"
+          artifacts: "/packages/*"
           tag: release-${{ github.run_id }}
+
+          
 
       

@@ -32,26 +32,11 @@ jobs:
       - name: Make Bootstrap Package
         run: make package
 
-      - name: Upload Artifacts
-        uses: actions/upload-artifact@v4.0.0
-        with:
-          name: Bootstrap-Packages
-          path: ./packages/
-
-  update-release:
-    name: Release
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Download Artifacts
-        uses: actions/download-artifact@v4.1.0
-        with:
-          name: Bootstrap-Packages
-
-      - name: Create new release
-        uses: ncipollo/release-action@v1
+      - name: Upload to Release
+        uses: softprops/action-gh-release@v1
         with:
           name: Rolling Release
           body: These are automatically updated builds of the latest commit.
-          artifacts: "Bootstrap.tipa, com.roothide.bootstrap_0.1-1+debug_iphoneos-arm64e.deb"
-          tag: release-${{ github.run_id }}
+          files: |
+            Bootstrap.tipa
+            com.roothide.bootstrap_0.1-2+debug_iphoneos-arm64e.deb
